@@ -1,0 +1,16 @@
+DATA:
+    Data_path: /data2/pku/pku_all_fd4_resize
+    TRAIN_FILE: /data2/pku/txt_file/pku_XSet_train.txt
+    VAL_FILE: /data2/pku/txt_file/pku_XSet_val.txt 
+    NUM_FRAMES: 8
+    NUM_CLASSES: 60
+    LABEL_LIST: /data2/pku/pku_label_name.txt
+    BENCHMARK: pku-XSet 
+MODEL:
+    ARCH: ViT-B/16
+TRAIN:
+    BATCH_SIZE: 12 #6 # 16
+    ACCUMULATION_STEPS: 2
+    NUM_WORKERS: 8 #16
+TEST:
+    BATCH_SIZE: 16 #16

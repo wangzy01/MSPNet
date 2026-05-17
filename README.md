@@ -23,6 +23,12 @@
   <sup>&dagger;</sup> Corresponding authors: Ziyi Wang and Peiming Li
 </p>
 
+## Lens Privacy Sealing
+
+![lps_workflow](assets/lps_workflow.png)
+
+## MSPNet
+
 ![pipeline](assets/pipeline.png)
 
 ## Repository
@@ -98,16 +104,6 @@ python -m torch.distributed.launch --nproc_per_node=4 --master_port=25658 ntu_ma
 ```
 
 ## Citation
-
-```bibtex
-@article{liu2026lens,
-  title={Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition},
-  author={Liu, Mengyuan and Wang, Ziyi and Li, Peiming and Yuan, Junsong},
-  journal={IEEE Transactions on Image Processing},
-  year={2026},
-  note={Accepted}
-}
-```
 
 ## Contact
 

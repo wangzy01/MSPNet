@@ -41,6 +41,8 @@
 
 The P3AR-NTU dataset processing repository is available at:
 
+[P3AR-NTU Dataset Repository](https://github.com/wangzy01/P3AR-NTU)
+
 ```text
 https://github.com/wangzy01/P3AR-NTU
 ```
@@ -66,6 +68,8 @@ The complete environment configuration is also provided in `requirements.yml`.
 ## Data
 
 Please prepare the P3AR-NTU and P3AR-PKU data paths in the corresponding YAML files under `configs/`. For P3AR-NTU download and preprocessing instructions, refer to:
+
+[P3AR-NTU Dataset Repository](https://github.com/wangzy01/P3AR-NTU)
 
 ```text
 https://github.com/wangzy01/P3AR-NTU

@@ -1,14 +1,33 @@
-# Benchmarking Physical Privacy-Preserving Action Recognition: An Embarrassingly Simple Device, Dataset, and Method
+# Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition
 
-## Introduction
+This repository contains the official implementation of **MSPNet** for the paper:
 
-RGB camera-based surveillance systems enable human action recognition for public safety and healthcare, yet raise serious privacy concerns. Existing methods rely on post-capture algorithms, which fail to protect privacy during data acquisition. We propose Lens Privacy Sealing (LPS), a simple hardware solution that physically obscures camera lenses with adjustable laminating film, providing pre-sensor privacy protection at minimal cost. Unlike software methods or expensive engineered optics, LPS achieves strong privacy through stochastic multi-layer scattering that is physically irreversible. We introduce the P$^3$AR dataset for privacy-preserving action recognition, featuring both large-scale replay-captured (P$^3$AR-NTU, 114K videos) and real-world collected (P$^3$AR-PKU) subsets with privacy attribute annotations. To handle video degradation from LPS, we propose MSPNet, a single-stage framework incorporating Inter-Frame Noise Suppressor (IFNS) and Cross-Frame Semantic Aggregator (CFSA), enhanced by contrastive language-image pre-training for robust semantic extraction. Extensive experiments demonstrate that MSPNet with IFNS and CFSA nearly doubles action recognition accuracy compared to baseline methods while suppressing identity recognition to near random-guess levels. Comprehensive validation shows LPS achieves a superior privacy-utility trade-off compared to state-of-the-art hardware methods, resists reconstruction attacks including PSF inversion and data-driven recovery, and generalizes robustly across optical configurations and challenging environments.
+**Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition**  
+Mengyuan Liu, Ziyi Wang<sup>&dagger;</sup>, Peiming Li<sup>&dagger;</sup>, Junsong Yuan  
+Accepted as a Regular Paper by **IEEE Transactions on Image Processing (T-IP)**.
+
+<sup>&dagger;</sup> Corresponding authors: Ziyi Wang and Peiming Li.
+
+## Overview
+
+RGB camera-based surveillance systems enable human action recognition for public safety, healthcare supervision, smart homes, and human-robot interaction, but they also raise privacy concerns during data acquisition. Lens Privacy Sealing (LPS) is a low-cost physical privacy solution that covers RGB camera lenses with adjustable laminating film to provide pre-sensor privacy protection.
+
+MSPNet is designed for action recognition from LPS-degraded videos. It uses an Inter-Frame Noise Suppressor (IFNS) to reduce static scattering noise and a Cross-Frame Semantic Aggregator (CFSA) to fuse motion cues across frames. The model further uses contrastive language-image pre-training for robust semantic extraction from degraded video inputs.
 
 ![pipeline](assets/pipeline.png)
 
-## Installation
+## Repository
 
-To set up the environment, follow the steps below:
+- `models/`: MSPNet, IFNS/CFSA-related modules, and transformer components.
+- `datasets/`: dataset loaders and preprocessing pipelines for P3AR-NTU and P3AR-PKU.
+- `configs/`: training and testing configurations.
+- `txt_file/`: split files and labels used by the experiments.
+- `comparison/`: baseline and reconstruction-attack utilities used in the paper.
+
+The P3AR-NTU dataset processing repository is available at:  
+https://github.com/wangzy01/P3AR-NTU
+
+## Installation
 
 ```bash
 conda create -n MSPNet python=3.7
@@ -16,7 +35,7 @@ conda activate MSPNet
 pip install -r requirements.txt
 ```
 
-To install Apex, use the following commands:
+Optional Apex installation:
 
 ```bash
 git clone https://github.com/NVIDIA/apex
@@ -24,19 +43,19 @@ cd apex
 pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 ```
 
-We provide the complete environment configuration in `requirements.yml` for your reference.
+The complete environment configuration is also provided in `requirements.yml`.
 
----
+## Data
 
-## Datasets
+Please prepare the P3AR-NTU and P3AR-PKU data paths in the corresponding YAML files under `configs/`. For P3AR-NTU download and preprocessing instructions, refer to the dataset repository:
 
-Please refer to our [repository](https://github.com/wangzy01/P3AR-NTU) for instructions on downloading and preprocessing the P$^3$AR-NTU dataset.
-
----
+```text
+https://github.com/wangzy01/P3AR-NTU
+```
 
 ## Training
 
-To train the MSPNet model on the P$^3$AR-NTU dataset using 4 GPUs, execute the following command:
+To train MSPNet on P3AR-NTU with 4 GPUs:
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=25658 ntu_main.py \
@@ -46,24 +65,17 @@ python -m torch.distributed.launch --nproc_per_node=4 --master_port=25658 ntu_ma
     --output output/ntu_encrypted
 ```
 
-### Notes:
+If your GPU memory is limited, adjust `--accumulation-steps` to maintain the effective batch size.
 
-- If your system has limited GPU memory or fewer GPUs, you can adjust the `--accumulation-steps` parameter to maintain the overall batch size.
-- Configuration files are located in the `configs` directory. Ensure that the correct dataset path is specified in the configuration.
-
-### Pretrained CLIP Model:
-
-The pretrained CLIP model will be automatically downloaded. Alternatively, you can manually specify the path using the following option:
+The pretrained CLIP model is downloaded automatically. You can also specify a local checkpoint:
 
 ```bash
 --pretrained /PATH/TO/PRETRAINED
 ```
 
----
-
 ## Testing
 
-To test the MSPNet model on the P$^3$AR-NTU dataset using 4 GPUs, execute the following command:
+To test MSPNet on P3AR-NTU with 4 GPUs:
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=25658 ntu_main.py \
@@ -72,3 +84,20 @@ python -m torch.distributed.launch --nproc_per_node=4 --master_port=25658 ntu_ma
     --output output/ntu_encrypted \
     --only_test True
 ```
+
+## Citation
+
+```bibtex
+@article{liu2026lens,
+  title={Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition},
+  author={Liu, Mengyuan and Wang, Ziyi and Li, Peiming and Yuan, Junsong},
+  journal={IEEE Transactions on Image Processing},
+  year={2026},
+  note={Accepted}
+}
+```
+
+## Contact
+
+For questions about this work, please contact the corresponding authors:  
+`ziyiwang@stu.pku.edu.cn`, `lipeiming1001@stu.pku.edu.cn`.

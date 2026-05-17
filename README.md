@@ -1,18 +1,27 @@
-# Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition
+<h1 align="center">Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition</h1>
 
-This repository contains the official implementation of **MSPNet** for the paper:
+<p align="center">
+  <a href="https://scholar.google.com/citations?hl=zh-CN&user=woX_4AcAAAAJ">Mengyuan Liu</a>,
+  <a href="https://wangzy01.github.io/">Ziyi Wang</a><sup>&dagger;</sup>,
+  <a href="https://scholar.google.com/citations?user=TFBbgIQAAAAJ&hl=zh-CN">Peiming Li</a><sup>&dagger;</sup>,
+  <a href="https://scholar.google.com/citations?user=fJ7seq0AAAAJ&hl=zh-CN">Junsong Yuan</a>
+</p>
 
-**Lens Privacy Sealing: A New Benchmark and Method for Physical Privacy-Preserving Action Recognition**  
-Mengyuan Liu, Ziyi Wang<sup>&dagger;</sup>, Peiming Li<sup>&dagger;</sup>, Junsong Yuan  
-Accepted as a Regular Paper by **IEEE Transactions on Image Processing (T-IP)**.
+<p align="center">
+  Peking University Shenzhen Graduate School, State University of New York at Buffalo
+</p>
 
-<sup>&dagger;</sup> Corresponding authors: Ziyi Wang and Peiming Li.
+<h2 align="center">IEEE Transactions on Image Processing (T-IP), 2026</h2>
 
-## Overview
+<p align="center">
+  <a href="https://arxiv.org/"><b>[Paper]</b></a>
+  |
+  <a href="https://github.com/wangzy01/MSPNet"><b>[Code]</b></a>
+</p>
 
-RGB camera-based surveillance systems enable human action recognition for public safety, healthcare supervision, smart homes, and human-robot interaction, but they also raise privacy concerns during data acquisition. Lens Privacy Sealing (LPS) is a low-cost physical privacy solution that covers RGB camera lenses with adjustable laminating film to provide pre-sensor privacy protection.
-
-MSPNet is designed for action recognition from LPS-degraded videos. It uses an Inter-Frame Noise Suppressor (IFNS) to reduce static scattering noise and a Cross-Frame Semantic Aggregator (CFSA) to fuse motion cues across frames. The model further uses contrastive language-image pre-training for robust semantic extraction from degraded video inputs.
+<p align="center">
+  <sup>&dagger;</sup> Corresponding authors: Ziyi Wang and Peiming Li
+</p>
 
 ![pipeline](assets/pipeline.png)
 
@@ -24,8 +33,11 @@ MSPNet is designed for action recognition from LPS-degraded videos. It uses an I
 - `txt_file/`: split files and labels used by the experiments.
 - `comparison/`: baseline and reconstruction-attack utilities used in the paper.
 
-The P3AR-NTU dataset processing repository is available at:  
+The P3AR-NTU dataset processing repository is available at:
+
+```text
 https://github.com/wangzy01/P3AR-NTU
+```
 
 ## Installation
 
@@ -47,7 +59,7 @@ The complete environment configuration is also provided in `requirements.yml`.
 
 ## Data
 
-Please prepare the P3AR-NTU and P3AR-PKU data paths in the corresponding YAML files under `configs/`. For P3AR-NTU download and preprocessing instructions, refer to the dataset repository:
+Please prepare the P3AR-NTU and P3AR-PKU data paths in the corresponding YAML files under `configs/`. For P3AR-NTU download and preprocessing instructions, refer to:
 
 ```text
 https://github.com/wangzy01/P3AR-NTU
@@ -99,5 +111,9 @@ python -m torch.distributed.launch --nproc_per_node=4 --master_port=25658 ntu_ma
 
 ## Contact
 
-For questions about this work, please contact the corresponding authors:  
-`ziyiwang@stu.pku.edu.cn`, `lipeiming1001@stu.pku.edu.cn`.
+For questions about this work, please contact the corresponding authors:
+
+```text
+ziyiwang@stu.pku.edu.cn
+lipeiming1001@stu.pku.edu.cn
+```

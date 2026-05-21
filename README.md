@@ -11,10 +11,10 @@
   Peking University Shenzhen Graduate School, State University of New York at Buffalo
 </p>
 
-<h2 align="center">IEEE Transactions on Image Processing (T-IP), 2026</h2>
+<h2 align="center">IEEE Transactions on Image Processing (TIP), 2026</h2>
 
 <p align="center">
-  <a href="https://arxiv.org/"><b>[Paper]</b></a>
+  <a href="https://arxiv.org/abs/2605.19578"><b>[Paper]</b></a>
   |
   <a href="https://github.com/wangzy01/MSPNet"><b>[Code]</b></a>
 </p>
